@@ -38,7 +38,7 @@ int img_process(RGB* img)
 
 	rgb2grey(img, grey);
 
-	dump_grey(grey);
+	dump_grey(grey); 
 
 	U8 img2[] = {
 	1, 2, 3, 4,
