@@ -16,6 +16,7 @@ constexpr auto U16MAX = (0xFFFF);
 constexpr auto U8MAX = (255);
 constexpr auto U8MIN = (0);
 constexpr auto PI = 3.1415926;
+constexpr auto M_PI = 3.1415926;
 
 #define calc_min(a,b) ((a)>(b)?(b):(a))
 #define calc_max(a,b) ((a)<(b)?(b):(a))
@@ -42,7 +43,7 @@ typedef struct _RGB
 
 typedef struct {
 	double real;
-	double imag;
+	double imagin;
 } Complex;
 
 int main();
@@ -59,13 +60,52 @@ RGB* load_bmp(const char* filename);
 
 void save_bmp(const char* filename, RGB* img);
 
-void dump_grey(U8* grey);
+void dump_grey(double* grey);
 
-void fft1D(Complex* v, int n, Complex* tmp);
+void dump_complex(Complex* data, RGB* mag, RGB* deg, U8 is_revert);
+void filter_complex(Complex* img);
+int isBase2(int size_n);
 
-Complex* fft2D(U8* img, int width, int height);
+void Add_Complex(Complex* src1, Complex* src2, Complex* dst);
 
-int rgb2grey(RGB* img, U8* grey);
+void Sub_Complex(Complex* src1, Complex* src2, Complex* dst);
+
+void Multy_Complex(Complex* src1, Complex* src2, Complex* dst);
+
+void Copy_Complex(Complex* src, Complex* dst);
+
+void Show_Complex(Complex* src, int size_n);
+
+void getWN(double n, double size_n, Complex* dst);
+
+void DFT(double* src, Complex* dst, int size);
+
+void IDFT(Complex* src, Complex* dst, int size);
+
+int FFTReal_remap(double* src, int size_n);
+
+int FFTComplex_remap(Complex* src, int size_n);
+
+int DFT2D(double* src, Complex* dst, int size_w, int size_h);
+
+int IDFT2D(Complex* src, Complex* dst, int size_w, int size_h);
+
+void ColumnVector(Complex* src, Complex* dst, int size_w, int size_h);
+
+void IColumnVector(Complex* src, Complex* dst, int size_w, int size_h);
+
+int FFT2D(double* src, Complex* dst, int size_w, int size_h);
+
+void FFT(Complex* src, Complex* dst, int size_n);
+
+void RealFFT(double* src, Complex* dst, int size_n);
+
+void IFFT(Complex* src, Complex* dst, int size_n);
+
+int IFFT2D(Complex* src, Complex* dst, int size_w, int size_h);
+
+
+int rgb2grey(RGB* img, double* grey);
 
 
 #endif
