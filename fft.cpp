@@ -48,7 +48,7 @@ int img_process(RGB* img)
 	RGB* deg = (RGB*)malloc(sizeof(RGB) * height * width);
 
 
-	filter_complex(fd);
+	//filter_complex(fd);
 	
 	dump_complex(fd, mag, deg, 1);
 	char bmp_mag[] = "C:/Work/Desktop/2 mag.bmp";
@@ -325,8 +325,15 @@ void filter_complex(Complex* img)
 				tmp <  (width * width / 4 + 1000))
 			{
 				
-				img[index].real = 1290000*2;
-				img[index].imagin = rand()*1290000;
+				img[index].real = 255;
+				img[index].imagin = 0;
+			}
+			else if (tmp > (width * width / 16 - 1000) &&
+				tmp < (width * width / 16 + 1000))
+			{
+
+				img[index].real = 150;
+				img[index].imagin = 0;
 			}
 			else
 			{
